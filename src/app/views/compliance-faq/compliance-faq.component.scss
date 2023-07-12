@@ -1,0 +1,154 @@
+.card{
+    width:100% !important;
+}
+
+// label{
+//     font-weight: 500;
+//   }
+  
+input[type="checkbox"][readonly] {
+    pointer-events: none;
+  }
+//   .table-container {
+//     height: 10em;
+// }
+table {
+    display: flex;
+    flex-flow: column;
+    height: 100%;
+    width: 100%;
+}
+table thead {
+    /* head takes the height it requires, 
+    and it's not scaled when table is resized */
+    flex: 0 0 auto;
+    width: calc(100% - 0.9em);
+}
+table tbody {
+    /* body takes all the remaining available space */
+    flex: 1 1 auto;
+    display: block;
+    // overflow-y: scroll;
+    white-space: pre-wrap;
+}
+table tbody tr {
+    width: 100%;
+}
+table thead, table tbody tr {
+    display: table;
+    table-layout: fixed;
+}
+input[type=radio]{
+    display: none;
+}
+
+.tableText{
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 16px;
+color: #000000;
+
+}
+
+.checklistHeading{
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 700;
+font-size: 1vw;
+line-height: 1.4vw;
+color: #000000;
+}
+
+.tableHeading{
+border-top: none;
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 500;
+font-size: 0.8vw;
+line-height: 1.1vw;
+color: #000000;
+}
+
+.submitButton{
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 14.8315px;
+line-height: 17px;
+color: #0150B1;
+border-color: #0150B1;
+border-radius: 8px;
+background: #FFFFFF;
+}
+
+
+
+  .btn-check:checked +.btn-outline-success {
+    color: #fff;
+    background-color: #198754;
+    border-color: #198754;
+  } 
+  
+  .btn-check:checked +.btn-outline-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  } 
+  .btn-check:checked +.btn-outline-secondary {
+    color: #fffefe;
+    background-color: #787373;
+    border-color: #787373;
+  } 
+
+
+  .btn-checkk:checked +.btn-outline-success {
+    color: black;
+    background-color: #787373;
+    border-color: #787373;
+  } 
+  
+  .btn-checkk:checked +.btn-outline-danger {
+    color: black;
+    background-color: #787373;
+    border-color: #787373;
+  } 
+
+  .btn-checkk:checked +.btn-outline-secondary {
+    color: black;
+    background-color: #787373;
+    border-color: #787373;
+  } 
+
+  .btn-checkk +.btn-outline-success {
+    color: #AEADAD;
+    border-color: #AEADAD  
+    ;
+  } 
+  
+  .btn-checkk +.btn-outline-danger {
+    color: #AEADAD;
+    border-color: #AEADAD 
+  } 
+  .btn-checkk +.btn-outline-secondary {
+    color: #AEADAD;
+    border-color: #AEADAD 
+  } 
+  .borderRadios {
+    border: 1px solid black;
+    border-radius: 7px;
+  }
+
+  .show{
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  .hide{
+    color: #f86c6b;
+    border-color: #f86c6b;
+  }
+input[_ngcontent-qpp-c104]:disabled {
+    color: #8282a1;
+}

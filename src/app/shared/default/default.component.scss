@@ -1,0 +1,76 @@
+.name {
+  color: cornflowerblue;
+  // margin-right: 10px;
+  // margin-left: 600px;
+}
+.abc {
+  margin-left: 7vw;
+}
+// ::ng-deep  .app-header .navbar-toggler-icon {
+//   visibility: hidden;
+// }
+.come-from-modal.left .modal-dialog,
+.come-from-modal.right .modal-dialog {
+    position: fixed;
+    margin: auto;
+    width: max-content;
+    top: 54px;
+    height: 100%;
+    -webkit-transform: translate3d(0%, 0, 0);
+    -ms-transform: translate3d(0%, 0, 0);
+    -o-transform: translate3d(0%, 0, 0);
+    transform: translate3d(0%, 0, 0);
+}
+
+// .come-from-modal.left .modal-content,
+// .come-from-modal.right .modal-content {
+//     height: auto;
+//     overflow-y: auto;
+//     border-radius: 0px;
+// }
+
+// .come-from-modal.left .modal-body,
+// .come-from-modal.right .modal-body {
+//     padding: 15px 15px 80px;
+// }
+.come-from-modal.right.fade .modal-dialog {
+    right: 3px;
+    -webkit-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -moz-transition: opacity 0.3s linear, right 0.3s ease-out;
+    -o-transition: opacity 0.3s linear, right 0.3s ease-out;
+    transition: opacity 0.3s linear, right 0.3s ease-out;
+}
+.blink_me {
+  animation: blinker 2s linear infinite;
+}
+
+.b1 {
+  border-radius: 50%;
+  background-color: red;
+  color: white;
+  position: absolute;
+  margin-left: -10px;
+  top: 7px;
+  // top: -50px;
+}
+
+
+
+@media only screen and (min-width: 992px) and (max-width: 1350px) {
+  .list {
+    margin-left: -280px;
+  }
+  // .abc {
+  //   margin-left: 5vw;
+  // }
+}
+@media only screen and (min-width: 992px) and (max-width: 1650px) {
+  .abc {
+    margin-left: 3vw;
+  }
+}
+@media only screen and (min-width: 2200px) and (max-width: 2560px) {
+  .abc {
+    margin-left: 23vw;
+  }
+}

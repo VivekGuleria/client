@@ -1,0 +1,384 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade" [fullScreen]="true">
+    <p style="color: white">Loading...</p>
+</ngx-spinner>
+
+<!-- <div class="row">
+    <div class="card mt-3 pb-0">
+        <div class="card-body" style=" padding-top: 0; padding-left: 15px; padding-right: 15px;">
+            <div class="row mb-2">
+                <div class="col-md-12  card-header" style="font-weight: 700;">
+                    <i style="font-weight: 500;" class="fa fa-th-large ml-2 "></i>MERCHANT COMPLIANCE CHECKLIST
+                </div>
+            </div>
+            
+            <div class="row" *ngIf="!readonly">
+                <form class="col-md-12">
+                    <div class="row pl-3 pr-5">
+                        <div class="table-container" *ngIf="loading">
+                            <table class="table table-striped table-hover table-responsive-lg">
+                                <thead>
+                                    <tr>
+                                        <th width="7%">Sr. No</th>
+                                        <th width="47%">Complaince Area</th>
+                                        <th width="17%">Response</th>
+                                        <th width="27%">Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let col of cols let ndx = index">
+                                        <td width="7%" style="font-weight: 600;">
+                                            <input type="hidden" name="id{{ndx}}" [(ngModel)]="col.id"
+                                                [ngModelOptions]="{standalone: true}">
+                                            {{col.id}}
+                                        </td>
+                                        <td width="47%"> {{col.complianceArea}}</td>
+
+
+                                        <td width="17%" *ngIf="col.id">
+
+
+                                            <input type="radio" class="btn-check" name="value{{ndx}}"
+                                                (change)="checkval($event)" id="success-outlined" autocomplete="off"
+                                                [(ngModel)]="col.value" value="true"
+                                                [ngModelOptions]="{standalone: true}" required>
+                                            <label class="btn btn-outline-success" for="success-outlined">Yes</label>
+
+                                            <input type="radio" class="btn-check" name="value{{ndx}}"
+                                                (change)="checkval($event)" id="danger-outlined" autocomplete="off"
+                                                [(ngModel)]="col.value" value="false" required
+                                                [ngModelOptions]="{standalone: true}" required>
+                                            <label class="btn btn-outline-danger" for="danger-outlined">No</label>
+                                            
+
+                                        </td>
+                                        <td width="17%" *ngIf="!col.id">
+
+                                        </td>
+                                        <td width="27%" *ngIf="!col.id">
+
+                                        </td>
+                                        <td width="27%" *ngIf="col.id">
+                                            <input class="form-control" name="remarks{{ndx}}" [(ngModel)]="col.remarks"
+                                                type="text" [ngModelOptions]="{standalone: true}">
+                                        </td>
+                                    </tr>
+
+
+                                    <div class="row col-md-12 ml-8 ">
+                                        <span class="col-md-12 pt-0 mt-2  float-right " style="text-align:center">
+                                            <button class="btn btn-primary btn-lg" [disabled]="processing"
+                                                (click)="submitForm()"> Submit</button>
+
+                                        </span>
+                                    </div>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="row" *ngIf="readonly">
+                <form class="col-md-12" #sampleForm="ngForm">
+                    <div class="row pl-3 pr-5">
+                        <div class="table-container">
+                            <table class="table table-striped table-hover table-responsive-lg">
+                                <thead>
+                                    <tr>
+                                        <th width="7%">Sr. No</th>
+                                        <th width="47%">Complaince Area</th>
+                                        <th width="17%">Response</th>
+                                        <th width="27%">Remarks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr *ngFor="let col of colstrue let ndx = index">
+                                        <td width="7%" style="font-weight: 600;">
+                                            <input type="hidden" name="id{{ndx}}" [(ngModel)]="col.id"
+                                                [ngModelOptions]="{standalone: true}">
+                                            {{col.id}}
+                                        </td>
+                                        <td width="47%"> {{col.complianceArea}}</td>
+                                        <td width="17%" *ngIf="col.id">
+
+                                            <input name="value{{ndx}}" [(ngModel)]="col.value" type="radio"
+                                                [value]="true" [ngModelOptions]="{standalone: true}"
+                                                [disabled]="resubmit"> Yes
+                                            <input name="value{{ndx}}" [(ngModel)]="col.value" type="radio"
+                                                [value]="false" required [ngModelOptions]="{standalone: true}"
+                                                [disabled]="resubmit"> No
+                                        </td>
+                                        <td width="17%" *ngIf="!col.id">
+
+                                        </td>
+                                        <td width="27%" *ngIf="!col.id">
+
+                                        </td>
+                                        <td width="27%" *ngIf="col.id">
+                                            <input class="form-control" name="remarks{{ndx}}" [(ngModel)]="col.remarks"
+                                                [value]="col.remarks" type="text" [ngModelOptions]="{standalone: true}"
+                                                [disabled]="resubmit">
+                                        </td>
+                                    </tr>
+
+
+                                    <div class="row col-md-12 ml-8 ">
+                                        <span class="col-md-12 pt-0 mt-2  float-right " style="text-align:center">
+                                            <button *ngIf="resubmit" class="btn btn-primary btn-lg"
+                                                (click)="resubmitForm()"> Resubmit</button>
+                                            <button *ngIf="!resubmit" class="btn btn-success btn-lg"
+                                                style="margin-left: 5px;" (click)="submitForm()"> Save</button>
+                                            <button *ngIf="!resubmit" class="btn btn-warning btn-lg"
+                                                style="margin-left: 5px;" (click)="reset()"> Reset</button>
+                                            <button *ngIf="!resubmit" class="btn btn-danger  btn-lg"
+                                                style="margin-left: 5px;" (click)="cancel()"> Cancel</button>
+                                        </span>
+                                    </div>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div> -->
+
+
+
+<div class=" mt-3" style="padding: 0 30px">
+    <div class="row">
+        <div class="card">
+            <label class="checklistHeading ml-4 my-2">Merchant Security Checklist</label>
+            <hr style="margin-top: 0px;">
+            <div class="card-body">
+                <!-- 1st param2 -->
+                <div *ngIf="!readonly">
+                    <form *ngIf="loading" [formGroup]="complianceForm">
+                        <table class="table table-hover"  style="margin-top: -2vw;">
+                            <thead>
+                                <tr>
+                                    <th class="tableHeading" width="7%">Sr. No</th>
+                                    <th class="tableHeading" width="47%">Complaince Area</th>
+                                    <th class="tableHeading" width="17%">Response</th>
+                                    <th class="tableHeading" width="27%">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="tableText"  *ngFor="let col of cols let i = index">
+                                    <td width="7%">
+                                        <input type="hidden" name="id{{i}}" [(ngModel)]="col.id"
+                                            [ngModelOptions]="{standalone: true}">
+                                        {{col.id}}
+                                    </td>
+                                    <td width="47%"> {{col.complianceArea}}</td>
+                                    <td width="17%" *ngIf="col.id">
+                                   
+                                        <input type="radio" class="btn-check" name="options-outlined{{i}}" id="success-outlined{{i}}" autocomplete="off"
+                                        checked (change)="checkval($event)"  style="border-radius: 0px;"
+                                        [(ngModel)]="col.value"type="radio" value="Yes"  required [ngModelOptions]="{standalone: true}">
+                                       <label class="btn btn-outline-success" for="success-outlined{{i}}">Yes</label>
+
+                                        <input type="radio" class="btn-check" name="options-outlined{{i}}" id="danger-outlined{{i}}" autocomplete="off"
+                                        style="border-radius: 0px;"
+                                        (change)="checkval($event)" [(ngModel)]="col.value"  type="radio" value="No"  [ngModelOptions]="{standalone: true}"
+                                         required>
+                                        <label class="btn btn-outline-danger" for="danger-outlined{{i}}">No</label>
+                                       
+                                        <input type="radio" class="btn-check" name="options-outlined{{i}}" id="secondary-outlined{{i}}" autocomplete="off"
+                                        style="border-radius: 0px;"
+                                        (change)="checkval($event)" [(ngModel)]="col.value"  type="radio" value="NA"  [ngModelOptions]="{standalone: true}"
+                                         required>
+                                        <label class="btn btn-outline-secondary" for="secondary-outlined{{i}}">N/A</label>
+
+                                        
+
+
+                                        <!-- <input name="value{{ndx}}" (change)="checkval($event)" [(ngModel)]="col.value"  type="radio" value="true"  [ngModelOptions]="{standalone: true}" required > Yes
+                            [ngStyle]="{'background-color': changeBgColor ? 'red' : 'white' }"
+                                    <input  name="value{{ndx}}" (change)="checkval($event)"  [(ngModel)]="col.value"type="radio" value="false"  required [ngModelOptions]="{standalone: true}" required col.value="'ngModel"> No
+                                -->
+                                    </td>
+                                    <td width="17%" *ngIf="!col.id"></td>
+                                    <td width="27%" *ngIf="!col.id"></td>
+                                    <td width="27%" *ngIf="col.id">
+                                        <input class="form-control" name="remarks{{i}}" [(ngModel)]="col.remarks" (keyup)="checkval($event)"
+                                            type="text" [ngModelOptions]="{standalone: true}" #remarks='ngModel' required>
+                                              
+                                            <div *ngIf="col.value=='NA' || col.value=='No'">
+                                            <span *ngIf="remarks.invalid">
+                                          
+                                                <span *ngIf="remarks.errors.required" class="alert" style="color:red">
+                                                    Remarks is mandatory 
+                                                </span>
+                                            </span>
+                                            </div>
+                                    </td>
+                                   
+                                  
+                                </tr>
+                                <div class="row mt-3">
+                                    <div class="row col-md-12 " *ngIf="!acceptchk" >
+                                        <span class="col-md-12 pt-0 mt-1  " style="text-align:center; margin-left: -2vw;">
+                                            <button   class="btn btn-secondary btn-lg" [ngStyle]="{'border-color' : '#787373' ,
+                                            'background-color': '#FFFFFF' ,
+                                          'color' : '#787373' }" disabled (click)="submitForm()" > Submit</button>  
+                                           
+                                        </span>
+                                       
+                                    </div> 
+                                    <div class="row col-md-12 "  *ngIf="acceptchk">
+                                        
+                                        <span class="col-md-12 pt-0 mt-1  " style="text-align:center; margin-left: -2vw; border-color: #0150B1;">
+                                            <button type="button" class="btn btn-outline-primary btn-lg"  [ngStyle]="{'border-color' : '1px solid #0150B1' ,
+                                            'background-color': '#0150B1' ,
+                                          'color' : '#FFFFFF' }"
+                                             (click)="confirm()" > Submit</button>  
+                                           
+                                        </span>
+                                       
+                                    </div> 
+                                </div>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+
+                <div *ngIf="readonly">
+                    <form #sampleForm="ngForm">
+                        <table  class="table table-hover" >
+                            <thead>
+                                <tr>
+                                    <th class="tableHeading" width="7%">Sr. No</th>
+                                    <th class="tableHeading" width="47%">Complaince Area</th>
+                                    <th class="tableHeading" width="17%">Response</th>
+                                    <th class="tableHeading" width="27%">Remarks</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let col of colstrue let ndx = index">
+                                    <td width="7%" style="font-weight: 600;">
+                                        <input type="hidden" name="id{{ndx}}" [(ngModel)]="col.id"
+                                            [ngModelOptions]="{standalone: true}">
+                                        {{col.id}}
+                                    </td>
+                                    <td width="47%"> {{col.complianceArea}}</td>
+                                    <td width="17%" *ngIf="col.id">
+                             <span *ngIf="resubmit">
+                             <input type="radio" class="btn-checkk" name="value{{ndx}}" id="success-outlined{{ndx}}" autocomplete="off"
+                                      [disabled]="resubmit"
+                                        [(ngModel)]="col.value" type="radio"  [value]="Yes"  [ngModelOptions]="{standalone: true}" readonly>
+                                       
+                                       <label class="btn btn-outline-success" for="success-outlined{{ndx}}">Yes</label>
+       
+
+                                        <input type="radio" class="btn-checkk"  name="value{{ndx}}" id="danger-outlined{{ndx}}" autocomplete="off"
+                                        [disabled]="resubmit"
+                                       [(ngModel)]="col.value"  type="radio" [value]="No"   [ngModelOptions]="{standalone: true}" readonly>
+
+                                        <label class="btn btn-outline-danger" for="danger-outlined{{ndx}}">No</label>
+
+                                        <input type="radio" class="btn-checkk"  name="value{{ndx}}" id="secondary-outlined{{ndx}}" autocomplete="off"
+                                        [disabled]="resubmit"
+                                       [(ngModel)]="col.value"  type="radio" [value]="NA"   [ngModelOptions]="{standalone: true}" readonly>
+
+                                        <label class="btn btn-outline-secondary" for="secondary-outlined{{ndx}}">N/A</label>
+
+                                    </span>
+                                    <span *ngIf="!resubmit">
+                                        <input type="radio" class="btn-check" name="value{{ndx}}" id="success-outlined{{ndx}}" autocomplete="off"
+                                                  (change)="checkvall($event)"
+                                                   [(ngModel)]="col.value" type="radio"  [value]="Yes"  [ngModelOptions]="{standalone: true}" >
+                                                  
+                                                  <label class="btn btn-outline-success" for="success-outlined{{ndx}}">Yes</label>
+                  
+           
+                                                   <input type="radio" class="btn-check"  name="value{{ndx}}" id="danger-outlined{{ndx}}" autocomplete="off"
+                                                    (change)="checkvall($event)"
+                                                  [(ngModel)]="col.value"  type="radio" [value]="No"   [ngModelOptions]="{standalone: true}" >
+           
+                                                   <label class="btn btn-outline-danger" for="danger-outlined{{ndx}}">No</label>
+
+                                                   <input type="radio" class="btn-check"  name="value{{ndx}}" id="secondary-outlined{{ndx}}" autocomplete="off"
+                                                   (change)="checkvall($event)"
+                                                 [(ngModel)]="col.value"  type="radio" [value]="NA"   [ngModelOptions]="{standalone: true}" >
+          
+                                                  <label class="btn btn-outline-secondary" for="secondary-outlined{{ndx}}">N/A</label>
+                                               </span>
+                                        <!-- <input name="value{{ndx}}" [(ngModel)]="col.value" type="radio"
+                                            [value]="true" [ngModelOptions]="{standalone: true}"
+                                            [disabled]="resubmit"> Yes
+                                        <input name="value{{ndx}}" [(ngModel)]="col.value" type="radio"
+                                            [value]="false" required [ngModelOptions]="{standalone: true}"
+                                            [disabled]="resubmit"> No -->
+                                    </td>
+                                    <td width="17%" *ngIf="!col.id"> </td>
+                                    <td width="27%" *ngIf="!col.id"></td>
+                                    <td width="27%" *ngIf="col.id">
+                                        <input class="form-control" name="remarks{{ndx}}" [(ngModel)]="col.remarks"
+                                            [value]="col.remarks" type="text" [ngModelOptions]="{standalone: true}"
+                                            [disabled]="resubmit" required (keyup)="checkvall($event)">
+                                            <div *ngIf="col.value=='NA' || col.value=='No'">
+                                                
+                                                <span *ngIf="col.remarks==''">
+                                              
+                                                    <span class="alert" style="color:red">
+                                                        Remarks is mandatory 
+                                                    </span>
+                                                </span>
+                                                </div>
+                                    </td>
+                                </tr>
+
+                                <div class="row col-md-12 ml-8 ">
+                                    <span class="col-md-12 pt-0 mt-2  float-right " style="text-align:center">
+                                        <!-- <button *ngIf="resubmit" class="btn btn-primary btn-lg"
+                                            (click)="resubmitForm()"> Resubmit</button> -->
+                                            <span  *ngIf="resubmit" class="col-md-12 pt-0 mt-1  " style="text-align:center; padding-left: 7vw;">
+                                                <button type="button" class="btn btn-secondary btn-lg" disabled style=" margin-right: 1vw;" > Submitted</button> 
+                                                <img src="assets/img/edit.png" alt="" (click)="resubmitForm()" >
+                                            </span>
+                                        </span>
+                                            <span *ngIf="!resubmit  " class="col-md-9 pt-0 mt-1  " style="text-align:center;     padding-left: 23vw;">
+                                        <button  class="btn btn-secondary btn-lg" 
+                                            style="margin-right: 1vw;"   [ngStyle]="{'border-color' : '1px solid #0150B1' ,
+                                            'background-color': '#0150B1' ,
+                                          'color' : '#FFFFFF' }" (click)="confirm()" [disabled]="!acceptchkk"> Re-Submit</button> 
+                                          <!-- <img src="assets/img/edit.png" alt=""   (click)="resubmitForm()"> -->
+                                        </span>
+                                      
+                                        <span class="col-md-3 pt-0 mt-1" style="text-align:center;" >
+                                        <button *ngIf="!resubmit" class="btn btn-warning btn-lg"
+                                              [ngStyle]="{'border-color' : '1px solid #0150B1' ,
+                                            'background-color': '#0150B1' ,
+                                          'color' : '#FFFFFF' }" (click)="reset()"> Reset</button>
+                                        <button *ngIf="!resubmit" class="btn btn-danger  btn-lg"   [ngStyle]="{'border-color' : '1px solid #B8090E' ,
+                                        'background-color': '#B8090E' ,
+                                      'color' : '#FFFFFF' }"
+                                            style="margin-left: 5px;" (click)="cancel()"> Cancel</button>
+                                        </span>
+                                   
+                                        <!-- <button *ngIf="!resubmit" class="btn btn-danger btn-lg" style="margin-left: 3px;" (click)="cancel()"> Cancel</button> -->
+                                   
+                                    <!-- <span class="col-md-3 pt-0 mt-2  " style="text-align:center">
+                                        <button class="btn btn-danger btn-lg" (click)="reset()"> Reset</button>
+                                    </span> -->
+                                </div>
+
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

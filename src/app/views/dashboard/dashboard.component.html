@@ -1,0 +1,208 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-spin-fade"
+  [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+> 
+ <div class="row">
+  <div class="card-body" style=" padding-top: 0;color: black; background-color:  #FFFFFF;">
+    <h1 style="text-align: center; font-family: sans-serif; font-size: 1.3vw; font-weight: bold; margin-top: 1.5vw;">PayPhi Merchant Compliance Portal</h1>
+    </div>
+<div class="container-fluid">
+    <div class="row">
+        <!-- <div class="card mt-3 pb-0"> -->
+            <!-- <div class="card-body" style=" padding-top: 0;color: white; background-color:  rgb(29,84,164);padding-left: 15px; padding-right: 15px;">
+<h1 style="text-align: center; font-family: sans-serif; font-size: 1.5vw;">Welcome To PayPhi Merchant Compliance Portal</h1><hr>
+</div> -->
+
+  
+<!-- </div> -->
+
+</div>
+
+<div class="row ml-3 " style="margin-right: 1vw;width:100% ;margin-top: -8px;padding: 4%;" >
+    <div class="card c1" style="border-radius: 20px;">
+      <div class="col-md-12" style="background-color:#353535;border-top-left-radius:10px;border-top-right-radius:10px;">
+        <label style="font-family: 'Roboto';font-style: normal;font-weight: 700;font-size: 1.1vw; line-height: 2vw;
+        letter-spacing: -0.02em;color: #FFFFFF; margin-left: 1.7vw;">
+           Compliance Overview
+          </label>
+        
+      </div>
+      <div class="card-body"  style="width:100%; overflow-x:scroll;" *ngIf="loading">
+        <table class="table" >
+          <thead >
+        
+            <tr>
+              <th >
+                S.No
+              </th>
+              <th >
+                Compliance Area
+              </th>
+              <th >
+                Version
+              </th>
+              <th >
+                View
+              </th>
+              <th >
+                Status
+              </th>
+              <th >
+                Submission Date
+              </th>
+              <th >
+                Due Date
+              </th>
+          </tr>
+          </thead>
+          <tbody>
+            <tr *ngIf="!paperTnCSigned"
+           class="table-row"  data-placement="top"  >
+           <td >
+           1. 
+        </td>
+        <td >
+            Terms and Conditions
+         </td>
+         <td >
+            {{tncData.version}}
+         </td>
+         <td  style="cursor: pointer;" (click)="viewtnc()">
+          <img src="assets/img/Vector.png" alt=""  >
+       </td>
+     
+         <td [ngStyle]="{'color':tncData.status === 'SUBMITTED' ? 'black' : 'red' }">
+             {{tncData.status}}
+         </td>
+         <td *ngIf="tncData.lastSubmittedDate!=='null'">
+         <span>{{tncData.lastSubmittedDate|date}}</span> 
+       </td>
+       <td *ngIf="tncData.lastSubmittedDate=='null'">
+        <span>N/A</span> 
+      </td>
+       
+         <td >
+         N/A
+         </td>
+        </tr>
+        <!-- compliance checklist -->
+        <tr 
+        class="table-row" data-toggle="tooltip" data-placement="top" >
+
+        <td  *ngIf="paperTnCSigned">
+        1. 
+     </td>
+
+     <td  *ngIf="!paperTnCSigned">
+      2. 
+   </td>
+     <td  >
+        Security Checklist
+      </td>
+      <td >
+        N/A
+      </td>
+      <td style="cursor: pointer;" (click)="viewmcc()">
+        <img src="assets/img/Vector.png" alt="">
+     </td>
+    
+ 
+      <td [ngStyle]="{'color':complainceStatus === 'SUBMITTED' ? 'black' : 'red' }">
+         {{complainceStatus}}
+      </td>
+      <td *ngIf="complianceData.lastSubmittedDate!=='null'">
+      <span>
+        {{complianceData.lastSubmittedDate|date}} 
+      </span>
+       
+     </td>
+     
+     <td *ngIf="complianceData.lastSubmittedDate=='null'">
+      <span>
+       N/A
+      </span>
+       
+     </td>
+      <td *ngIf="complianceData.nextDueDate!=='null'">
+       <span>{{complianceData.nextDueDate|date}} </span> 
+      </td>
+      <td *ngIf="complianceData.nextDueDate=='null'">
+        <span>N/A </span> 
+       </td>
+     </tr>
+     <!--  -->
+     <tr 
+     class="table-row" data-toggle="tooltip" data-placement="top" >
+     <td  *ngIf="paperTnCSigned">
+      2. 
+   </td>
+     <td  *ngIf="!paperTnCSigned">
+     3. 
+  </td>
+  <td  >
+     Ad Hoc
+   </td>
+   <td >
+     N/A
+   </td>
+   <td style="cursor: pointer;" (click)="vieadhoc()">
+     <img src="assets/img/Vector.png" alt="">
+  </td>
+ 
+
+   <td [ngStyle]="{'color':adhocstatus === 'SUBMITTED' ? 'black' : 'red' }">
+      {{adhocstatus}}
+   </td>
+   <td >
+   
+    N/A
+  </td>
+   <td >
+    N/A
+   </td>
+   
+  </tr>
+  
+  <tr>
+    <td  *ngIf="!paperTnCSigned">
+      4. 
+   </td>
+    <td  >
+      Terms of USE
+    </td>
+    <td >
+      {{termsOfUseData.version}}
+    </td>
+    <td style="cursor: pointer;" (click)="viewtermofuse()">
+      <img src="assets/img/Vector.png" alt="">
+   </td>
+  
+ 
+   <td [ngStyle]="{'color':termsOfUseData.status === 'SUBMITTED' ? 'black' : 'red' }">
+    {{termsOfUseData.status}}
+   </td>
+   <td >
+    {{termsOfUseData?.lastSubmittedDate}}
+   </td>
+    <td >
+     N/A
+    </td>
+    
+  </tr>
+          </tbody>
+        </table>
+      </div>
+
+
+   
+      
+    </div>
+  </div>
+
+
+</div>
+</div>

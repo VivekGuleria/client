@@ -1,0 +1,174 @@
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade" [fullScreen]="true">
+  <p style="color: white">Signing In...</p>
+</ngx-spinner>
+<!-- <div class="container-fluid">
+  <div class="row">
+    <div class="col-md-8 offset-md-2 p-5 mt-5">
+      <div class="row box">
+        <div class="col-md-4 pl-5 pr-5 left" style="background-color:rgb(29,84,164) ;">
+          <div id="d1" class="row">
+            <div class="col-md-12 ">
+
+              <p>
+                <span>
+                  <h1 class="mt-4" style="font-family: sans-serif;">
+                    <span style="color:white;font-size: 1.5vw;">Welcome to </span>
+                  </h1>
+                  <h1 style=" color:white;font-family: sans-serif;font-weight: 700; font-size: 1.8vw;">PayPhi Merchant
+                    Compliance Portal</h1>
+                  <hr size="2" width="90%" color="white" style="margin-left: -0.2vw;">
+                </span>
+                <span style="font-size: 1.1vw; font-family: sans-serif; color: white; font-weight: lighter; ">Sign In to
+                  Complete your </span><br>
+                <span style="font-size: 1.1vw; font-family: sans-serif; color: white; font-weight: lighter;">Compliance
+                  Procedure</span><br>
+              </p><br><br>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-7 form p-3">
+          <div class="row">
+            <div class="col-md-12">
+              <div class="float-right">
+                <img src="../../../assets/img/Payphi 1.png" alt="" height="30vw" width="80vw">
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row p-4 bg-white" style="border-radius: 10px; margin-top: 1vw; 
+          margin-bottom: -35px;border-radius: 10px; margin-left: 30px;">
+            <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+              <h1 style=" font-family: sans-serif; font-size: 1.5vw; font-weight: 600;">Sign In</h1>
+              <div class="myDiv">
+                <input type="text" class="form-control" placeholder="Email Address/Phone No."
+                  formControlName="userEmail" [ngClass]="{'is-invalid': formSubmitted && f.userEmail.errors}"
+                  required />
+                <div *ngIf="formSubmitted && f.userEmail.errors" class="invalid-feedback">
+                  <div style="margin-top:-14px; margin-bottom: 13px;" *ngIf="f.userEmail.errors.required">
+                    User email or phone no. is required
+                  </div>
+                  <div style="margin-top:-14px; margin-bottom: 13px;" class="mb-3" *ngIf="f.userEmail.errors.pattern">
+                    Enter Valid Email</div>
+                </div>
+
+                <input id="eye-input" [type]="Phide ? 'password' : 'text'" class="form-control" placeholder="Password"
+                  required formControlName="userCred" [ngClass]="{
+              'is-invalid': formSubmitted && f.userCred.errors 
+              }" /><label *ngIf="Phide==true" (click)="hidePass()" id="icon" for="eye-input" style="color: #787373;"
+                  class="fa fa-eye"></label>
+                <label *ngIf="Phide==false" (click)="hidePass()" id="icon" for="eye-input"
+                  class="fa Example of eye-slash fa-eye-slash"></label>
+                <div *ngIf="formSubmitted && f.userCred.errors" class="invalid-feedback">
+                  <div style="margin-top:-14px; margin-bottom: 13px;" *ngIf="f.userCred.errors.required">
+                    Password is required
+                  </div>
+
+                </div>
+
+
+                <button style="font-size: 15px; font-family: sans-serif; font-size: 0.9vw; border-color: #787373;"
+                  type="submit" class="btn btn-block mt-4 mb-4 btn1">
+                  <span style="color: grey;"> Sign in </span>
+                </button>
+                <a style="font-weight: 800; color: rgb(29,84,164); " href="forgot-password">
+                  <h6
+                    style="text-align: center;font-family: sans-serif; font-size: 0.9vw; font-weight: 600;margin-left: -14vw;">
+                    Forgot Password ?</h6>
+                </a>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 offset-md-1 box">
+      <div class="row">
+        <div class="col-md-4" style="background-color: #0150B1;;">
+          <div class="row" style="margin-top: 10vw;margin-left: 1vw;margin-right: 1vw;">
+            <div class="col-md-12">
+            <label class="welcomeTo">Welcome to</label>
+            <p class="portalText">PayPhi Merchant <br> Compliance <br> Portal</p>
+            <hr color="#FFFFFF">
+            <p style="margin-top: 1.5vw; font-size: 1vw;line-height: 1.3vw;color: white; font-family: 'Roboto';font-style: normal;
+            font-weight: 400; ">Sign In to complete your <br> compliance procedure </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-8" style="background-color: white;">
+          <div class="row mt-2">
+            <div class="col-md-12">
+              <div class="float-right">
+                <img src="assets/img/Payphi 1.png" alt="" height="40vw" width="100vw">
+              </div>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 5vw;margin-bottom: 6.5vw;">
+            <div class="col-sm-8 offset-md-2">
+              <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
+                <label class="signIn mb-5">Sign In</label>
+
+                <input type="text" class="form-control" placeholder="Email Address/Phone No."
+                  formControlName="userEmail" [ngClass]="{'is-invalid': formSubmitted && f.userEmail.errors}"
+                  required />
+                <div *ngIf="formSubmitted && f.userEmail.errors" class="invalid-feedback">
+                  <div style="margin-top:-14px; margin-bottom: 13px;" *ngIf="f.userEmail.errors.required">
+                    User email or phone no. is required
+                  </div>
+                  <div style="margin-top:-14px; margin-bottom: 13px;" class="mb-3" *ngIf="f.userEmail.errors.pattern">
+                    Enter Valid Email</div>
+                </div>
+
+                <input id="eye-input" [type]="Phide ? 'password' : 'text'" class="form-control" placeholder="Password"
+                  required formControlName="userCred" [ngClass]="{
+              'is-invalid': formSubmitted && f.userCred.errors 
+              }" /><label *ngIf="Phide==true" (click)="hidePass()" id="icon" for="eye-input" style="color: #787373;"
+                  class="fa fa-eye"></label>
+                <label *ngIf="Phide==false" (click)="hidePass()" id="icon" for="eye-input"
+                  class="fa Example of eye-slash fa-eye-slash"></label>
+                <div *ngIf="formSubmitted && f.userCred.errors" class="invalid-feedback">
+                  <div style="margin-top:-14px; margin-bottom: 13px;" *ngIf="f.userCred.errors.required">
+                    Password is required
+                  </div>
+                </div>
+
+                <button  style="font-family: sans-serif; font-size: 0.9vw; border-color: #787373"
+                [disabled]="!loginForm.valid " [ngStyle]="{'border-color' : !loginForm.valid  ? '#787373' : '1px solid #0150B1',
+                'background-color': !loginForm.valid  ?'#FFFFFF' : '#0150B1',
+              'color' :!loginForm.valid  ? '#787373' : '#FFFFFF'}"
+                  type="submit" class="btn btn-block mt-5 mb-4"> Sign In
+                </button>
+                <!-- <div class="row col-md-12" *ngIf="!checkval" >
+                  <span class="col-md-12 pt-0 mt-1  " style="text-align:center; margin-left: -2vw;">
+                      <button   class="btn btn-secondary btn-lg" disabled (click)="confirm()" > Accept</button>  
+                     
+                  </span>
+                 
+              </div> 
+              <div class="row col-md-12" *ngIf="checkval">
+                  <span class="col-md-12 pt-0 mt-1  " style="text-align:center; margin-left: -2vw;">
+                      <button class="btn btn-lg btn-primary" (click)="confirm()" > Accept</button>  
+                     
+                  </span>
+                 
+              </div>  -->
+                <a style="color: #0150B1; font-size: 0.9vw; 
+                  font-weight: 600;font-family: 'Roboto';font-style: normal;" href="forgot-password">
+                    Forgot Password ?
+                </a>
+
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

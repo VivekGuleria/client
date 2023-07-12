@@ -1,0 +1,237 @@
+
+<app-header 
+  
+  [fixed]="true"
+  [navbarBrandFull]="{src: 'assets/img/payphi.jpg',  height: 50, alt: 'PayPhi'}"
+  [navbarBrandMinimized]="{src: 'assets/img/payphi.jpg', width: 30, height: 30, alt: 'PayPhi'}"
+  [sidebarToggler]="'lg'"
+  [asideMenuToggler]="'lg'"
+  [asideMenuToggler]='false' >
+  <!-- <ul class="nav navbar-nav">
+    <div  class="container d-flex justify-content-center position-absolute abc" >
+        <li *ngIf="userType!='SERVICE_PROVIDER'" class="nav-item list">
+          <img src='{{merchantImagePath}}' (error)="updateUrl($event)" style="font-weight: 900; text-transform: uppercase;
+         color: darkgray;" height="40px" alt={{profileData?.displayName}}>
+        </li>
+        *ngIf="showName"
+        <li  style="font-weight: 900; text-transform: uppercase;
+         color: darkgray;">{{profileData?.name}}</li>
+  </div>
+  </ul> -->
+ 
+  <ul class="nav navbar-nav ml-auto" >
+  <!-- <div class="dropdown" *ngIf="mAlerts?.length>0 && userType!='SERVICE_PROVIDER'">
+    <button class="btn fa fa-bell" type="button"  (click)="removeCount()" ng data-toggle="dropdown"  style="font-size: 25px; margin-right: 100px" aria-hidden="true"><span class="badge b1" style="font-size: 13px;">{{nCount}}</span>
+   </button>
+   
+    <div  class="dropdown-menu dropdown-menu-right p-3"  style="width:52vh; margin-right: -300px; height: 94vh;">
+      
+      <h5 onclick="event.stopPropagation()" style="font-size:1.2vw;background-color:  rgb(29,84,164); color: white;width: 170px; border-radius: 7px;padding: 4px; text-align: center;">Notifications</h5>
+      <p style="margin-top: -47px; font-size: 25px; margin-left: 183px;">({{mAlerts.length}})</p>
+      <span style="float: right; font-size: 50px; margin-top: -76px; cursor: pointer;" aria-hidden="true">&times;</span><hr>
+      <div class="card mb-3 p-2 pb-3 pr-2"  *ngFor="let data of mAlerts" onclick="event.stopPropagation()" style="text-align: left; border: 2px solid rgb(29,84,164); border-radius: 10px;">
+        <p style="text-align:right; margin-bottom: -15px;">{{data?.createdAt|timeAgo}}</p>
+        <i class="fa fa-exclamation-circle mr-2 mt-1" style="font-size:35px; color: rgb(29,84,164);" aria-hidden="true"></i>
+        <div class="ml-5">
+        <p style="font-weight:400;font-size:1.1vw; color: black; margin-bottom: -20px;margin-top: -39px;"><b>{{data?.header}}-</b></p> <br>
+        <span  style="color: rgb(74, 73, 73); font-size:0.8vw;">{{data?.message}}</span><br>
+        <a class="btn btn-white mt-2" style="border:2px solid  rgb(29,84,164); color: rgb(29,84,164); font-weight: 500; font-size: 0.7vw;" target="_blank" href={{data?.link}}>Click Here</a>
+        </div>
+        <button class="btn fa fa-trash mt-2" style="font-size: 1.3vw; color: rgb(105, 103, 103); float: right;"></button>
+      </div>
+    </div>
+  </div> -->
+    
+    <!-- <li *ngIf="loggedInAT!=null  && loggedInAT!=undefined" class="mr-2" style="font-weight: 500; color: gray;">Last Logged In At {{loggedInAT | date: "dd/MM/yyyy h:mma"}}</li> -->
+    <li class="nav-item dropdown" dropdown placement="bottom right" style="cursor: pointer;">
+      <a class="nav-link" data-toggle="dropdown"  role="button" aria-haspopup="true" aria-expanded="false"  (click)="false">
+      
+        <i class="fa fa-user-circle fa-3x" style="color: lightblue;" (click)="showitFn()" aria-hidden="true"></i>
+      </a>
+     
+      <div class="dropdown-menu dropdown-menu-right" [ngClass]="{'show' : showit}"  aria-labelledby="simple-dropdown" style="max-height: 100vh;overflow-y: auto;">
+        <!-- <div class="dropdown-header " (click)="businessDetailsToggleFn()"><img src="assets/img/business_details.png" style="width: 17px;height: 15px;">&nbsp;<strong>Business Details</strong>
+          &nbsp; <i class="fa fa-chevron-up" style="padding-left: 73px;" *ngIf="businessDetailsToggle" aria-hidden="true"></i>
+          <i class="fa fa-chevron-down" style="padding-left: 73px;" *ngIf="!businessDetailsToggle" aria-hidden="true"></i>
+        </div>
+          <a class="dropdown-item" *ngIf="(businessDetailsToggle) && (!isReseller &&merchantType!='AGG') && userType!='SERVICE_PROVIDER'"> Merchant Name - {{profileData?.name}}</a>
+          <a class="dropdown-item" *ngIf="(businessDetailsToggle ) &&  (isReseller &&merchantType=='AGG')"> Reseller Name - {{profileData?.name}}</a>
+          <a class="dropdown-item"  *ngIf="(businessDetailsToggle)  && (!isReseller && merchantType=='AGG') &&  userType!='SERVICE_PROVIDER'"> Aggregator Name - {{profileData?.name}}</a>
+          <a class="dropdown-item"  *ngIf="businessDetailsToggle &&  userType=='SERVICE_PROVIDER'"> Provider Name - {{providerName}}</a>
+
+          <a class="dropdown-item" *ngIf="businessDetailsToggle && (!isReseller && userType!='SERVICE_PROVIDER')"> Doing Business As - {{profileData?.displayName}}</a>
+          <a class="dropdown-item" *ngIf="businessDetailsToggle && (!isReseller && userType!='SERVICE_PROVIDER')"> GST - {{profileData?.gst}}</a>
+
+          <a class="dropdown-item" *ngIf="(businessDetailsToggle)&& (!isReseller && merchantType!='AGG') && userType!='SERVICE_PROVIDER'"> Merchant Id - {{profileData?.merchantid}}</a>
+          <a class="dropdown-item" *ngIf="(businessDetailsToggle) &&  ( isReseller && merchantType=='AGG')"> Reseller Id - {{profileData?.merchantid}}</a>
+          <a class="dropdown-item"  *ngIf="(businessDetailsToggle )  && (!isReseller && merchantType=='AGG')&&  userType!='SERVICE_PROVIDER'"> Aggregator Id - {{profileData?.merchantid}}</a>
+          <a class="dropdown-item"  *ngIf="businessDetailsToggle  &&  userType=='SERVICE_PROVIDER'"> Provider Id - {{providerID}}</a>
+
+        <div class="dropdown-header " (click)="contactDetailsToggleFn()"><img src="assets/img/contact_details.png" style="width: 17px;height: 17px;">&nbsp;<strong>Contact Details</strong>
+          &nbsp; <i class="fa fa-chevron-up" style="padding-left: 78px;" *ngIf="contactDetailsToggle" aria-hidden="true"></i>
+          <i class="fa fa-chevron-down" style="padding-left: 78px;" *ngIf="!contactDetailsToggle" aria-hidden="true"></i></div>
+          <a class="dropdown-item" *ngIf="contactDetailsToggle&&  userType!='SERVICE_PROVIDER'">
+             Address - {{profileData?.addressLine1_2}}
+             <i class="fa fa-pencil ml-3" (click)="onEdit(template)" aria-hidden="true" ></i></a>
+          <a class="dropdown-item" *ngIf="contactDetailsToggle&&  userType=='SERVICE_PROVIDER'">
+              Address - 
+              <i class="fa fa-pencil ml-3" (click)="onEdit(template)" aria-hidden="true" ></i></a>
+
+          
+            <a class="dropdown-item" *ngIf="contactDetailsToggle&&  userType!='SERVICE_PROVIDER'">
+             Mobile Number - {{profileData?.mobileNo}}
+            <i class="fa fa-pencil ml-3" (click)="onEdit(template)" aria-hidden="true"></i>
+          </a>
+            <a class="dropdown-item" *ngIf="contactDetailsToggle&&  userType=='SERVICE_PROVIDER'">
+            Mobile Number - 
+           <i class="fa fa-pencil ml-3" (click)="onEdit(template)" aria-hidden="true"></i>
+          </a>
+
+          
+          <a class="dropdown-item" *ngIf="contactDetailsToggle&&  userType!='SERVICE_PROVIDER'">
+             Business contact email id - 
+            {{profileData?.businessOwnerEmail}}
+            <i class="fa fa-pencil ml-3" (click)="onEdit(template)" aria-hidden="true"></i>
+          </a>
+          <a class="dropdown-item" *ngIf="contactDetailsToggle&&  userType=='SERVICE_PROVIDER'">
+            Business contact email id - 
+           <i class="fa fa-pencil ml-3" (click)="onEdit(template)" aria-hidden="true"></i>
+         </a>
+
+          
+          <a class="dropdown-item" *ngIf="contactDetailsToggle&&  userType!='SERVICE_PROVIDER'">
+             Support Contact email id - 
+            {{profileData?.techSupportEmail}}
+            <i class="fa fa-pencil ml-3" (click)="onEdit(template)" aria-hidden="true"></i>
+          </a>
+          <a class="dropdown-item" *ngIf="contactDetailsToggle&&  userType=='SERVICE_PROVIDER'">
+            Support Contact email id - 
+           <i class="fa fa-pencil ml-3" (click)="onEdit(template)" aria-hidden="true"></i>
+         </a>
+
+        <div class="dropdown-header" (click)="activationDetailsToggleFn()"><img src="assets/img/activation_details.png" style="width: 17px;height: 15px;">&nbsp; <strong>Activation Details</strong>
+          &nbsp; <i class="fa fa-chevron-up" style="padding-left: 60px;" *ngIf="activationDetailsToggle" aria-hidden="true"></i>
+          <i class="fa fa-chevron-down" style="padding-left: 60px;" *ngIf="!activationDetailsToggle" aria-hidden="true"></i>
+        </div>
+          <a class="dropdown-item" *ngIf="activationDetailsToggle && userType!='SERVICE_PROVIDER'"> Status - {{profileData?.status}}</a>
+          <a class="dropdown-item" *ngIf="activationDetailsToggle && userType=='SERVICE_PROVIDER'"> Status - </a>
+
+          <a class="dropdown-item" *ngIf="activationDetailsToggle &&userType!='SERVICE_PROVIDER'">
+           On-boarding date - {{profileData?.createdAt | date: "dd/MM/yyyy"}}</a>
+          <a class="dropdown-item" *ngIf="activationDetailsToggle &&userType=='SERVICE_PROVIDER'">On-boarding date -</a>
+        
+       
+        <div *ngIf="(!isReseller && merchantType!='AGG')&&userType!='SERVICE_PROVIDER'" class="dropdown-header" (click)="bankAccountDetailsToggleFn()"><img src="assets/img/bank_details.png" style="width: 17px;height: 15px;">&nbsp;<strong>Bank Account Details</strong>
+          &nbsp; <i class="fa fa-chevron-up" style="padding-left: 44px;" *ngIf="bankAccountDetailsToggle" aria-hidden="true"></i>
+          <i class="fa fa-chevron-down" style="padding-left: 44px;" *ngIf="!bankAccountDetailsToggle" aria-hidden="true"></i>
+        </div>
+          <a class="dropdown-item" *ngIf="bankAccountDetailsToggle"> Account Number - {{profileData?.accountNumber}}</a>
+          <a class="dropdown-item" *ngIf="bankAccountDetailsToggle"> IFSC Code - {{profileData?.ifscCode}}</a>
+          <a class="dropdown-item" *ngIf="bankAccountDetailsToggle"> Beneficiary Name - {{profileData?.beneficiaryName}}</a> -->
+        <div class="dropdown-header text-center " style="cursor: pointer;" (click)="logout()"><strong> <i class="fa fa-sign-out" aria-hidden="true" ></i>Log Out</strong></div>
+        
+    </div>
+    </li>
+  </ul>
+
+</app-header>
+
+<div class="app-body" (click)="closeNav()">
+  <app-sidebar #appSidebar [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized" (minimizedChange)="toggleMinimize($event)">
+    <app-sidebar-nav  [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
+ <!-- <app-sidebar-nav  [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav> -->
+    <app-sidebar-minimizer></app-sidebar-minimizer>
+
+
+    
+  </app-sidebar>
+
+  <main class="main">
+ 
+    <!-- <cui-breadcrumb> -->
+    
+      <!-- <alert class="alert-info" type="info" style="text-align: left;">
+        <div *ngFor="let data of alertData">
+      <span class="badge bg-primary mt-1 blink_me ml-1">New</span> &nbsp;<span style="font-weight: 500;">{{data?.message}} <a href={{data?.link}}>here</a></span><br>
+      </div>
+      </alert> -->
+      
+  
+    <!-- </cui-breadcrumb> -->
+    <div class="container-fluid">
+    
+      <router-outlet> </router-outlet>
+    </div>
+    </main>
+ 
+  </div>
+
+
+  <!-- <ng-template #template>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">Edit Contact Details</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="contactForm" (ngSubmit)="updateContact()">
+        <div class="heading ">Business Owner Email</div>
+        <input type="email" class="form-control" placeholder="Business Owner Email"
+         autocomplete="off" formControlName="businessOwnerEmail"
+          [ngClass]="{ 'is-invalid': formSubmitted && f.businessOwnerEmail.errors }" required />
+        <div *ngIf="formSubmitted && f.businessOwnerEmail.errors" class="invalid-feedback">
+          <div *ngIf="f.businessOwnerEmail.errors.required">Email is required</div>
+          <div *ngIf="f.businessOwnerEmail.errors.pattern">Enter Valid Email</div>
+        </div>
+        <div class="heading ">Tech Support Email</div>
+        <input type="email" class="form-control" placeholder="Tech Support Email" autocomplete="off"
+          formControlName="techSupportEmail" [ngClass]="{ 'is-invalid': 
+          formSubmitted && f.techSupportEmail.errors }"
+          required />
+        <div *ngIf="formSubmitted && f.techSupportEmail.errors" class="invalid-feedback">
+          <div *ngIf="f.techSupportEmail.errors.required">Email is required</div>
+          <div *ngIf="f.techSupportEmail.errors.pattern">Enter Valid Email</div>
+        </div>
+        <div class="heading ">Mobile No</div>
+        <input type="text" class="form-control" placeholder="Mobile No" autocomplete="off"
+          formControlName="mobileNo" [ngClass]="{ 'is-invalid': 
+                  formSubmitted && f.mobileNo.errors }" required />
+        <div *ngIf="formSubmitted && f.mobileNo.errors" class="invalid-feedback">
+          <div *ngIf="f.mobileNo.errors.required">Number is required</div>
+        </div>
+        <div class="heading ">Address</div>
+        <input type="text" class="form-control" placeholder="Address Line"
+         autocomplete="off" formControlName="addressLine1_2" [ngClass]="{ 'is-invalid': 
+                          formSubmitted && f.addressLine1_2.errors }" required />
+        <div *ngIf="formSubmitted && f.addressLine1_2.errors" class="invalid-feedback">
+          <div *ngIf="f.addressLine1_2.errors.required">Address is required</div>
+          <div *ngIf="f.addressLine1_2.errors.pattern">Address is not valid</div>
+        </div>
+        <button type="submit" class="btn btn-block btn-primary p-2 mt-2">
+          Update
+        </button>
+      </form>
+    </div>
+  </ng-template> -->
+
+
+  <!-- <div  class="modal fade  come-from-modal right" id="myModal"  role="dialog" >
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+              <h5 style="font-size: 1.2vw;background-color:  rgb(29,84,164); color: white;width: 170px; border-radius: 7px;padding: 4px; text-align: center;">Notifications</h5>
+                <button style="font-size: 2vw;" type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                
+            </div>
+            <div class="modal-body" style="height: 86vh;">
+              <div class="mb-3 p-2 pb-3" *ngFor="let data of mAlerts"  style="text-align: left; border: 2px solid rgb(29,84,164); border-radius: 10px;">
+               
+                  <span style="font-weight: 500;font-size: 24px; color: black;">{{data?.header}}-</span> <br>
+                   <span  style="color: rgb(74, 73, 73); font-size:18px;">{{data?.message}} <a href={{data?.link}} target="_blank" style="color: rgb(29,84,164);">&nbsp; Click here</a></span>
+               
+              </div>
+            </div>
+        </div>
+    </div>
+</div> -->

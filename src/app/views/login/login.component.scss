@@ -1,0 +1,132 @@
+.container-fluid {
+  background-color: #eee;
+  min-height: 100vh;
+}
+.box {
+  // min-height: 55vh;
+  margin-top: 10vw;
+  // background-color: white;
+}
+
+@media (min-width: 1250px) and (max-width: 1420px) {
+  .box {
+    margin-top: 6vw;
+  }
+}
+
+@media (min-width: 1421px) and (max-width: 1520px) {
+  .box {
+    margin-top: 9.5vw;
+  }
+}
+@media (min-width: 1521px) and (max-width: 1620px) {
+  .box {
+    margin-top: 8vw;
+  }
+}
+@media (min-width: 1621px) and (max-width: 1780px) {
+  .box {
+    margin-top: 8.4vw;
+  }
+}
+input {
+  margin-bottom: 18px;
+}
+#d1 {
+  //   margin-top: 130px;
+  margin-top: 2vmax;
+  padding-top: 50px;
+  padding-bottom: 30px;
+  // background-color: hsla(214, 86%, 51%, 0.1);
+  border-radius: 10px;
+  // font-family: Courier New;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 0.8vmax;
+  font-weight: 600;
+}
+.btn1 {
+  color: white;
+}
+.btn2 {
+  border: none;
+  background-color: white;
+  color: gray;
+  font-size: 20px;
+}
+.form {
+  // display: flex;
+  border: 2px solid black;
+  // justify-content: space-evenly;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: none;
+  
+  
+  // border-radius: 10px;
+}
+.myDiv {
+  height: 35%;
+  //   margin-top: 130px;
+  margin-top: 8%;
+}
+// .form-control {
+//   width: 22vw;
+// }
+#icon{
+  float: right;
+    margin-top: -40px;
+    font-size: 12px;
+    padding-left: -100px;
+    padding-right: 5px;
+    margin-left: -30px;
+}
+// @media only screen and (min-width: 1100px) and (max-width: 1600px) {
+//   #icon{
+//      padding-right: 50px;
+//   }
+// }
+// @media only screen and (min-width: 1308px) and (max-width: 1410px) {
+//   #icon{
+//      padding-right: 60px;
+//   }
+// }
+// @media only screen and (min-width: 1100px) and (max-width: 1370px) {
+//   h1{
+//      font-size: 30px;
+//      text-align: left;
+//   }
+// }
+//   @media only screen and (min-width: 500px) and (max-width: 1594px) {
+//     .btn{
+//        width: 90%;
+//     }
+// }
+
+.signIn{
+font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 1.7vw;
+line-height: 2vw;
+color: #414141;
+}
+
+.welcomeTo{
+  font-family: 'Roboto';
+font-style: normal;
+font-weight: 400;
+font-size: 1vw;
+line-height: 1.3vw;
+color: #FFFFFF;
+}
+
+.portalText{
+  font-family: 'Roboto';
+font-style: normal;
+font-weight: 600;
+font-size: 1.4vw;
+line-height: 1.7vw;
+
+color: #FFFFFF;
+}
+

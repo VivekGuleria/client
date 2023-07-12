@@ -1,0 +1,159 @@
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-spin-fade"
+  [fullScreen]="true"
+  ><p style="color: white">Loading...</p></ngx-spinner
+>
+<div class="row" style="padding: 0 30px">
+    <div class="card mt-3 pb-0">
+        <div class="card-body" style=" padding-top: 0; padding-left: 15px; padding-right: 15px;">
+            <div class="row mb-2">
+                <div class="col-md-12  card-header" style="font-weight: 750; background-color: white;">
+                    <i style="font-weight: 500;" ></i>Ad Hoc List
+                </div>
+           
+            </div>
+
+            <div class="row" >
+                <form class="col-md-12"   >
+                    <div class="row pl-3 pr-5">
+                        <div class="table-container"  >
+                            <table class="table table-hover" 
+
+
+                            >
+                                <thead>
+                                    <tr>
+                                        <th width="7%">Sr. No</th>
+                                        <th width="57%">Clause</th>
+                                        <th width="17%">View Details</th>
+                                       <th width="17%">Status
+                                       <i  (click)="onSortClick('status',$event)" class="my-icon fa fa-chevron-up" 
+                                       style="cursor:pointer"
+                                        ></i></th>
+                                       <th width="17%">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody >
+                                   
+                                    <tr *ngFor="let col of cols let ndx = index">
+                                        <td width="7%" style="font-weight: 600;">
+                                            {{col.id}}
+                                            </td>
+                                        <td width="57%" >{{col.clause}}
+                                             </td>
+                                        <td width="17%" >
+                                 
+                                            <span style="text-decoration: underline; color: #0150B1; cursor: pointer;"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal"  (click)="viewCompliance(col)"
+                                             > Click to View</span>
+                                       </td> 
+                                      <td  width="17%">
+                                          <span *ngIf="col.status=='PENDING'" style="color: #0150B1;" >
+                                       {{col.status}}
+                                          </span>
+                                          <span *ngIf="col.status=='SUBMITTED'" style="color: #787373;" >
+                                           ACCEPTED
+                                          </span>
+                                         
+                                            </td>
+                                            <td  width="17%">   
+                                        <span  *ngIf="col.lastSubmittedDate!=='null'" style="color: #787373;">
+                                            {{col.lastSubmittedDate|date}}
+                                        </span>
+                                        <span  *ngIf="col.lastSubmittedDate==null">
+                                        </span>  
+                                        </td>
+                                    </tr>
+                                   
+                         
+                                  
+                                </tbody>
+                               
+                            </table>
+                           
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            </div>
+            </div>
+            </div>
+            <!-- <ng-template #template>
+                <div class="modal-header" >
+                    <h4 class="modal-title pull-left"> {{viewData.id}}.             {{viewData.clause}}</h4>
+                    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                 
+                   <div class="modal-footer" style="margin-left: -3vw;">
+                    <button class=" mr-8 " type="submit" class="btn btn-outline-primary" (click)="saveAdhoc(viewData.id,viewData.clause)"
+                                        style="border-radius: 8px;">Agree and Accept</button>
+                  
+               
+                </div>
+            </ng-template>
+         -->
+          
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" 
+aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="border-radius: 20px;margin-top: 10vw;">
+      <div class="modal-body">
+       
+          <div class="row">
+              <div class="col-md-12"
+                  style="background-color:#F4F7FE;border-top-left-radius:20px;border-top-right-radius:20px; margin-top: -1vw;">
+                  <label style="font-family: 'Roboto';font-style: normal;font-weight: 700;font-size: 1.1vw; line-height: 2vw;
+                letter-spacing: -0.02em;color: #353535; margin-left: 1vw; margin-top: 0.6vw;">
+                      Ad Hoc
+                  </label>
+                  <button type="button" #closebutton class="btn-close float-right" data-bs-dismiss="modal" aria-label="Close" 
+                      style="font-size: 1.5vw; border: none;background-color:#F4F7FE;" >
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+          </div>
+
+
+          <div class="row mx-1 mt-3">
+              <div class="col-md-12" style="margin-left: 0.5vw; ">
+            
+                
+        <label style="font-weight:800;">
+                      {{id}}. {{clause}}</label>
+                  <hr style="background-color: #414141; margin-left: 1vw; margin-right: 3.5vw;  ">
+                 {{description}}
+                 <!-- <hr style="background-color: #414141; margin-left: 1vw; margin-right: 3.5vw;  "> -->
+                  <div class="row" style="margin-top: 5vw; text-align: center;">
+                      <div class="col-md-12">
+                          <div  *ngIf="status=='PENDING'">
+                              <button  class=" p-2 px-4  updateButton"
+                              (click)="confirm()" [ngStyle]="{'background-color': '#0150B1'}"
+                                  style="border:none;outline: none; background: #0150B1;">Agree and Accept</button>
+                             
+                          </div>
+                          <div  *ngIf="status!=='PENDING'">
+                            <button  class=" p-2 px-4  updateButton btn btn-lg btn-secondary"
+                            (click)="confirm()"  disabled
+                               >Accepted</button>
+                           
+                        </div>
+                        <!-- [ngStyle]="{'background-color': '#787373'}"
+                        style="border:none;outline: none; background: #787373;" -->
+                      </div>
+                  </div>
+          
+              </div>
+          </div>
+
+       
+      </div>
+    </div>
+  </div>
+</div>
